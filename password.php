@@ -3,7 +3,7 @@
 $pswdSourceString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,;.:-_?=/&%£!$";
 
 $lenght = $_GET["pswdLenght"] ?? false;
-$arrRepetitions = $_GET["pswdRepetitionsFalse"] ?? $_GET["pswRepetitionTrue"];
+$arrRepetitions = $_GET["pswdRepetitions"];
 $options = [
     "letters" => $_GET["letters"] ?? true,
     "numbers" => $_GET["numbers"] ?? false,
@@ -17,9 +17,9 @@ function generateLenghtArray($len, $repetitions)
     $pswdArraySource = str_split($pswdSourceString);
     $pswdArray = [];
 
-    if ($repetitions == false) {
+    if ($repetitions == "false") {
 
-        for ($i = 0; $i <= $len; ++$i) {
+        for ($i = 0; $i < $len; ++$i) {
 
             $thisChar = $pswdArraySource[rand(0, sizeof($pswdArraySource))];
 

@@ -17,7 +17,7 @@
                 <div class="row p-3">
                     <span class="col-6">Lunghezza Password:</span>
                     <div class="col-3">
-                        <input type="numbers" class="form-control" name="pswdLenght" required>
+                        <input type="number" min="1" max="32" class="form-control" name="pswdLenght" required>
                     </div>
                 </div>
 
@@ -32,16 +32,30 @@
                 <div class="row p-3">
                     <span class="col-6 pt-0">Repetitions:</span>
                     <div class="col-3">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="pswdRepetitionsFalse" checked>
+                        <div class="form-check" required>
+                            <input class="form-check-input" type="radio" name="pswdRepetitions" value="true">
                             <div class="form-check-label">
                                 Si
+
+
                             </div>
+
+
+                            <input class="form-check-input" type="radio" name="pswdRepetitions" value="false">
+                            <div class="form-check-label">
+                                no
+                            </div>
+
+
+                        </div>
+
+                        <!--                         <div class="form-check">
+
                             <input class="form-check-input" type="radio" name="pswdRepetitionsTrue">
                             <div class="form-check-label">
                                 no
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
                 </div>
