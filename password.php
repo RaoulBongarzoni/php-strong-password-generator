@@ -3,7 +3,7 @@
 $pswdSourceString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,;.:-_?=/&%£!$";
 
 $lenght = $_GET["pswdLenght"] ?? false;
-$arrRepetitions = $_GET["pswdRepetitions"] ?? false;
+$arrRepetitions = $_GET["pswdRepetitionsFalse"] ?? $_GET["pswRepetitionTrue"];
 $options = [
     "letters" => $_GET["letters"] ?? true,
     "numbers" => $_GET["numbers"] ?? false,
@@ -11,15 +11,30 @@ $options = [
 ];
 
 
-function generateLenghtArray($len)
+function generateLenghtArray($len, $repetitions)
 {
-    $pswdSourceString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890,;.:-_?=/&%£!$";
+    $pswdSourceString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
     $pswdArraySource = str_split($pswdSourceString);
     $pswdArray = [];
 
-    for ($i = 0; $i <= $len; ++$i) {
-        array_push($pswdArray, $pswdArraySource[rand(0, sizeof($pswdArraySource))]);
-    };
+    if ($repetitions == false) {
+
+        for ($i = 0; $i <= $len; ++$i) {
+
+            $thisChar = $pswdArraySource[rand(0, sizeof($pswdArraySource))];
+
+            if (in_array($thisChar, $pswdArray)) {
+                --$i;
+            } else {
+
+                array_push($pswdArray, $thisChar);
+            };
+        };
+    } else {
+        for ($i = 0; $i <= $len; ++$i) {
+            array_push($pswdArray, $pswdArraySource[rand(0, sizeof($pswdArraySource))]);
+        };
+    }
 
     return implode($pswdArray);
 };
@@ -65,7 +80,7 @@ function generatePassword($lenght, $repetitions, $source)
 
     <h1> <?php
 
-            echo generateLenghtArray($lenght)
+            echo generateLenghtArray($lenght, $arrRepetitions)
 
             ?> </h1>
 
